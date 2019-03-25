@@ -21,7 +21,7 @@ public abstract class BaseEntity implements Serializable {
 	/** 修改日期 */
 	protected Date modifyDate;
 
-	/** 排序索引 */
-	protected Long orders;
+	/** 排序 */
+	protected Long sort;
 
 }
