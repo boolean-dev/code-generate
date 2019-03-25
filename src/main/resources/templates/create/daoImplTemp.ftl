@@ -9,16 +9,12 @@ import ${BASE_PACKAGE}.dao.${objectName}Dao;
 import ${BASE_PACKAGE}.entity.${objectName};
 
 /**
- * ${objectName}DaoImpl-${memo}
- * @version: v1.0
- * @Description: ${memo}
+ * @ClassName ${objectName}-${memo}
+ * @Description: @TODO
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
-/**
- * Dao - 管理员
- */
-@Repository("${objectNameLower}DaoImpl")
+@Repository
 public class ${objectName}DaoImpl extends BaseDaoImpl<${objectName}> implements ${objectName}Dao {
 
 	@Override
@@ -26,6 +22,7 @@ public class ${objectName}DaoImpl extends BaseDaoImpl<${objectName}> implements 
 		return super.find(mapper, parameters);
 	}
 
+	@Override
 	public ${objectName} find(String id) throws Exception {
 		Map<String, Object> parameters = new HashMap<String, Object>();
 		parameters.put("id", id);

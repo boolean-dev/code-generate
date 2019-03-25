@@ -5,9 +5,8 @@ import java.math.BigDecimal;
 import java.util.Date;
 
 /**
- * ${objectName}-${memo}
- * @version: v1.0
- * @Description: ${memo}
+ * @ClassName ${objectName}-${memo}
+ * @Description: @TODO
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
@@ -17,7 +16,9 @@ public class ${objectName} extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	<#list params as param>
-	/** ${param.memo} */
+    /**
+     * ${param.memo}
+     */
 	private ${param.type} ${param.name};
 	
 	</#list>

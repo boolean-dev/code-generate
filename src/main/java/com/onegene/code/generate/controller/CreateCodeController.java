@@ -92,30 +92,31 @@ public class CreateCodeController {
 		root.put("camelName", new CamelNameMethod());
 
 		/* 生成实体 */
-		printJavaFile("entityTemp.ftl", root, objectName + ".java", PACKAGE_PATH_ENTITY);
+		printJavaFile("entityTemp.ftl", root, objectName + ".java", objectName + "/");
 
 		/* 生成controller */
-		printJavaFile("controllerTemp.ftl", root, objectName + "Controller.java", PACKAGE_PATH_CONTROLLER);
+		printJavaFile("controllerTemp-web.ftl", root, objectName + "Controller.java", objectName + "/web/");
+		printJavaFile("controllerTemp-restful.ftl", root, objectName + "Controller.java", objectName + "/");
 
 		/* 生成service */
-		printJavaFile("serviceTemp.ftl", root, objectName + "Service.java", PACKAGE_PATH_SERVICE);
-		printJavaFile("serviceImplTemp.ftl", root, objectName + "ServiceImpl.java", PACKAGE_PATH_SERVICE_IMPL);
+		printJavaFile("serviceTemp.ftl", root, objectName + "Service.java", objectName + "/");
+		printJavaFile("serviceImplTemp.ftl", root, objectName + "ServiceImpl.java", objectName + "/");
 
 		/* 生成dao */
-		printJavaFile("daoTemp.ftl", root, objectName + "Dao.java", PACKAGE_PATH_DAO);
-		printJavaFile("daoImplTemp.ftl", root, objectName + "DaoImpl.java", PACKAGE_PATH_DAO_IMPL);
+		printJavaFile("daoTemp.ftl", root, objectName + "Dao.java", objectName + "/");
+		printJavaFile("daoImplTemp.ftl", root, objectName + "DaoImpl.java", objectName + "/");
 
 		/* 生成mybatis xml */
-		printResourceFile("mapper.ftl", root, objectName + "Mapper.xml", "/mybatis/");
+		printJavaFile("mapper.ftl", root, objectName + "Mapper.xml", objectName + "/mybatis/");
 
 		/* 生成SQL脚本 */
-		printResourceFile("sqlTemp.ftl", root, objectName + ".sql", "/");
+		printJavaFile("sqlTemp.ftl", root, objectName + ".sql", objectName + "/");
 
 		/* 生成ftl页面 */
-		printResourceFile("viewTemp.ftl", root, "view.ftl", "/templates/admin/" + objectNameLower + "/");
-		printResourceFile("addTemp.ftl", root, "add.ftl", "/templates/admin/" + objectNameLower + "/");
-		printResourceFile("editTemp.ftl", root, "edit.ftl", "/templates/admin/" + objectNameLower + "/");
-		printResourceFile("listTemp.ftl", root, "list.ftl", "/templates/admin/" + objectNameLower + "/");
+		printJavaFile("viewTemp.ftl", root, "view.ftl", objectName + "/admin/" + objectNameLower + "/");
+		printJavaFile("addTemp.ftl", root, "add.ftl", objectName + "/admin/" + objectNameLower + "/");
+		printJavaFile("editTemp.ftl", root, "edit.ftl", objectName + "/admin/" + objectNameLower + "/");
+		printJavaFile("listTemp.ftl", root, "list.ftl", objectName + "/admin/" + objectNameLower + "/");
 
 //		Map<String,Object> result=new HashMap<>();
 //		result.put("result", "ok");
@@ -125,32 +126,16 @@ public class CreateCodeController {
 	public static void printJavaFile(String ftlName, Map<String, Object> root, String outFile, String filePath)
 			throws Exception {
 		try {
-			File file = new File(PROJECT_PATH + JAVA_PATH + filePath + outFile);
-			if (!file.getParentFile().exists()) { // 判断有没有父路径，就是判断文件整个路径是否存在
-				file.getParentFile().mkdirs(); // 不存在就全部创建
+			File file = new File(PROJECT_PATH + filePath + outFile);
+			// 判断有没有父路径，就是判断文件整个路径是否存在
+			if (!file.getParentFile().exists()) {
+				// 不存在就全部创建
+				file.getParentFile().mkdirs();
 			}
 			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
 			Template template = getTemplate(ftlName);
-			template.process(root, out); // 模版输出
-			out.flush();
-			out.close();
-		} catch (TemplateException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	public static void printResourceFile(String ftlName, Map<String, Object> root, String outFile, String filePath)
-			throws Exception {
-		try {
-			File file = new File(PROJECT_PATH + RESOURCES_PATH + filePath + outFile);
-			if (!file.getParentFile().exists()) { // 判断有没有父路径，就是判断文件整个路径是否存在
-				file.getParentFile().mkdirs(); // 不存在就全部创建
-			}
-			Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
-			Template template = getTemplate(ftlName);
-			template.process(root, out); // 模版输出
+			// 模版输出
+			template.process(root, out);
 			out.flush();
 			out.close();
 		} catch (TemplateException e) {
@@ -165,13 +150,16 @@ public class CreateCodeController {
 	 * 
 	 * @param ftlName
 	 */
-	public static Template getTemplate(String ftlName) throws Exception {
+	private static Template getTemplate(String ftlName) throws Exception {
 		try {
 			File file = ResourceUtils.getFile("classpath:application.yml");
-			Configuration cfg = new Configuration(); // 通过Freemaker的Configuration读取相应的ftl
+			// 通过Freemaker的Configuration读取相应的ftl
+			Configuration cfg = new Configuration();
 			cfg.setEncoding(Locale.CHINA, "utf-8");
-			cfg.setDirectoryForTemplateLoading(new File(file.getParent() + "\\templates\\create")); // 设定去哪里读取相应的ftl模板文件
-			Template temp = cfg.getTemplate(ftlName); // 在模板文件目录中找到名称为name的文件
+			// 设定去哪里读取相应的ftl模板文件
+			cfg.setDirectoryForTemplateLoading(new File(file.getParent() + "\\templates\\create"));
+			// 在模板文件目录中找到名称为name的文件
+			Template temp = cfg.getTemplate(ftlName);
 			return temp;
 		} catch (IOException e) {
 			e.printStackTrace();                                                                                                                                                                                                                                                                                                                                                                                

@@ -15,39 +15,43 @@ import ${BASE_PACKAGE}.entity.${objectName};
 import ${BASE_PACKAGE}.service.${objectName}Service;
 
 /**
- * ${objectName}ServiceImpl-${memo}
- * @version: v1.0
- * @Description: ${memo}
+ * @ClassName ${objectName}-${memo}
+ * @Description: @TODO
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
-@Service("${objectNameLower}ServiceImpl")
+@Service
 public class ${objectName}ServiceImpl extends BaseServiceImpl<${objectName}> implements ${objectName}Service {
 
-	@Resource(name = "${objectNameLower}DaoImpl")
+	@Autowired
 	private ${objectName}Dao ${objectNameLower}Dao;
 
-	@Resource(name = "${objectNameLower}DaoImpl")
+	@Autowired
 	public void setBaseDao(${objectName}Dao ${objectNameLower}Dao) {
 		super.setBaseDao(${objectNameLower}Dao);
 	}
-	
+
+	@Override
 	public ${objectName} save(${objectName} ${objectNameLower}) throws Exception {
 		return ${objectNameLower}Dao.save("${objectName}Mapper.save", ${objectNameLower});
 	}
-	
+
+	@Override
 	public ${objectName} update(${objectName} ${objectNameLower}) throws Exception {
 		return ${objectNameLower}Dao.update("${objectName}Mapper.update", ${objectNameLower});
 	}
-	
+
+	@Override
 	public int delete(String[] ids) throws Exception {
 		return ${objectNameLower}Dao.delete("${objectName}Mapper.deleteAll", ids);
 	}
 
+	@Override
 	public ${objectName} findById(String id) throws Exception {
 		return ${objectNameLower}Dao.find(id);
 	}
 
+	@Override
 	public Page<${objectName}> findPage(Pageable pageable) throws Exception {
 		
 		int pageNumber = pageable.getPageNumber();

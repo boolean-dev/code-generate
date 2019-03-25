@@ -44,7 +44,7 @@ public class GlobalId {
     private long timestampLeftShift;
 
     /** 生成序列的掩码，这里为4095 (0b111111111111=0xfff=4095) */
-    private long sequenceMask = -1L ^ (-1L << sequenceBits);
+    private long sequenceMask = ~(-1L << sequenceBits);
 
     /** 工作机器ID(0~31) */
     private long workerId;
@@ -91,8 +91,8 @@ public class GlobalId {
     }
 
     private void build() {
-        this.maxWorkerId = -1L ^ (-1L << workerIdBits);
-        this.maxDatacenterId = -1L ^ (-1L << datacenterIdBits);
+        this.maxWorkerId = ~(-1L << workerIdBits);
+        this.maxDatacenterId = ~(-1L << datacenterIdBits);
         this.datacenterIdShift = sequenceBits + workerIdBits;
         this.timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;
     }
@@ -130,9 +130,9 @@ public class GlobalId {
         lastTimestamp = timestamp;
 
         //移位并通过或运算拼到一起组成64位的ID
-        return ((timestamp - twepoch) << timestampLeftShift) //
-                | (datacenterId << datacenterIdShift) //
-                | (workerId << workerIdShift) //
+        return ((timestamp - twepoch) << timestampLeftShift)
+                | (datacenterId << datacenterIdShift)
+                | (workerId << workerIdShift)
                 | sequence;
     }
 

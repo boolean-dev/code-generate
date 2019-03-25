@@ -5,9 +5,8 @@ import ${BASE_PACKAGE}.entity.${objectName};
 
 
 /**
- * ${objectName}Dao-${memo}
- * @version: v1.0
- * @Description: ${memo}
+ * @ClassName ${objectName}-${memo}
+ * @Description: @TODO
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
