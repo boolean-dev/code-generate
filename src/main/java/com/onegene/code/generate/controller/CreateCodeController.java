@@ -33,7 +33,7 @@ public class CreateCodeController {
 	@Autowired
 	private CreateCodeService createCodeService;
 
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String create() throws Exception {
 		return "/createCode/add";
 	}
@@ -47,7 +47,8 @@ public class CreateCodeController {
 		List<CreateItem> result = new ArrayList<>();
 		for(int i=0; i<createItems.size();i++) {
 			if("id".equals(createItems.get(i).getJavaName()) || "createDate".equals(createItems.get(i).getJavaName())
-					|| "modifyDate".equals(createItems.get(i).getJavaName()) || "orders".equals(createItems.get(i).getJavaName())) {
+					|| "modifyDate".equals(createItems.get(i).getJavaName()) || "sort".equals(createItems.get(i).getJavaName())
+					|| "delete".equals(createItems.get(i).getJavaName())) {
 				continue;
 			}else {
 				result.add(createItems.get(i));

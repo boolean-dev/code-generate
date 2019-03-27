@@ -10,6 +10,7 @@ import java.util.Date;
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
+@Data
 @Alias("${objectName}")
 public class ${objectName} extends BaseEntity {
 
