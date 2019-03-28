@@ -98,6 +98,7 @@ public class CreateCodeController {
 		/* 生成controller */
 		printJavaFile("controllerTemp-web.ftl", root, objectName + "Controller.java", objectName + "/web/");
 		printJavaFile("controllerTemp-restful.ftl", root, objectName + "Controller.java", objectName + "/");
+		printJavaFile("feignTemp.ftl", root, objectName + "Feign.java", objectName + "/");
 
 		/* 生成service */
 		printJavaFile("serviceTemp.ftl", root, objectName + "Service.java", objectName + "/");
@@ -108,7 +109,7 @@ public class CreateCodeController {
 		printJavaFile("daoImplTemp.ftl", root, objectName + "DaoImpl.java", objectName + "/");
 
 		/* 生成mybatis xml */
-		printJavaFile("mapper.ftl", root, objectName + "Mapper.xml", objectName + "/mybatis/");
+		printJavaFile("mapper.ftl", root, objectName + "Mapper.xml", objectName + "/");
 
 		/* 生成SQL脚本 */
 		printJavaFile("sqlTemp.ftl", root, objectName + ".sql", objectName + "/");
