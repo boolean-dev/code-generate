@@ -12,9 +12,9 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
 
 /**
  * @ClassName ${objectName}
- * @Description: ${memo}
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 @RestController
 public class ${objectName}Controller implements AdminFeign {

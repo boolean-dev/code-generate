@@ -15,9 +15,9 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
 
 /**
  * @ClassName ${objectName}
- * @Description: ${memo}
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 @Service
 public class ${objectName}ServiceImpl extends BaseServiceImpl<${objectName}> implements ${objectName}Service {

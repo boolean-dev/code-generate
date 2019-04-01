@@ -9,9 +9,9 @@ import java.util.Date;
 
 /**
  * @ClassName ${objectName}
- * @Description: ${memo}
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 @Data
 @Alias("${objectName}")

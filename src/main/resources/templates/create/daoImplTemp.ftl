@@ -10,9 +10,9 @@ import ${BASE_PACKAGE}.entity.${objectName};
 
 /**
  * @ClassName ${objectName}
- * @Description: ${memo}
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 @Repository
 public class ${objectName}DaoImpl extends BaseDaoImpl<${objectName}> implements ${objectName}Dao {

@@ -6,9 +6,9 @@ import ${BASE_PACKAGE}.entity.${objectName};
 
 /**
  * @ClassName ${objectName}
- * @Description: ${memo}
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 public interface ${objectName}Service extends BaseService<${objectName}> {
 

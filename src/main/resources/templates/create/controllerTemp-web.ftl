@@ -15,9 +15,9 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
 
 /**
  * @ClassName ${objectName}-${memo}
- * @Description: @TODO
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @Description @TODO
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 @Controller
 @RequestMapping("/admin/${objectNameLower}")
