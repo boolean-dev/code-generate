@@ -24,7 +24,7 @@ public interface ${objectName}Feign {
 	 */
 	@ApiOperation(value = "添加${memo}", notes = "查询${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	Message save(@RequestBody ${objectName} ${objectNameLower});
+	Message save(@RequestBody @Valid ${objectName} ${objectNameLower});
 
 	/**
 	* 更新${memo}
@@ -51,7 +51,7 @@ public interface ${objectName}Feign {
 	 */
 	@ApiOperation(value = "${memo}详情", notes = "根据id查看${memo}详情")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	Message view(@PathVariable String id);
+	Message<${objectName}> view(@PathVariable String id);
 
 	/**
 	 * 删除${memo}

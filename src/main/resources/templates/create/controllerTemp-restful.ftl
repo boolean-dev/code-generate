@@ -1,6 +1,9 @@
 package ${BASE_PACKAGE}.controller;
 
-import ${BASE_PACKAGE}.feign.AdminFeign;
+import ${BASE_PACKAGE}.feign.${objectName}Feign;
+import ${BASE_PACKAGE}.entity.vo.${objectName}VO;
+import ${BASE_PACKAGE}.enums.Delete;
+import ${BASE_PACKAGE}.utils.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,33 +20,40 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
  * @date ${DATE}
  */
 @RestController
-public class ${objectName}Controller implements AdminFeign {
+public class ${objectName}Controller implements ${objectName}Feign {
 
 	@Autowired
 	private ${objectName}Service ${objectNameLower}Service;
 	
 	@Override
-	public Message save(@RequestBody ${objectName} ${objectNameLower})  {
-		${objectNameLower}.buildId();
+	public Message save(@RequestBody @${objectName} ${objectNameLower}VO)  {
+        ${objectName} ${objectNameLower} = BeanUtils.transfrom(${objectName}.class,${objectNameLower}VO);
+        ${objectNameLower}.buildId();
+        ${objectNameLower}.setDelete(Delete.NONE);
+        ${objectNameLower}.setSort(0L);
 		${objectNameLower}Service.save(${objectNameLower});
 		return SuccessMessage.message("保存成功");
 	}
 	
 	@Override
-	public Message update(@RequestBody ${objectName} ${objectNameLower})  {
+	public Message update(@RequestBody ${objectName}VO ${objectNameLower}VO)  {
+        ${objectName} ${objectNameLower} = BeanUtils.transfrom(${objectName}.class,${objectNameLower}VO);
 		${objectNameLower}Service.update(${objectNameLower});
 		return SuccessMessage.message("更新成功");
 	}
 	
 	@Override
 	public Page<${objectName}> list(Pageable pageable)  {
-		return ${objectNameLower}Service.findPage(pageable);
+        Page<${objectName}> page = ${objectNameLower}Service.findPage(pageable);
+        List<${objectName}VO> ${objectNameLower}VOList = BeanUtils.batchTransform(${objectName}VO.class,page.getData());
+        return new Page<>(${objectNameLower}VOList,page.getTotal(),pageable);
 	}
 	
 	@Override
-	public Message view(@PathVariable String id)  {
-		${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
-		return SuccessMessage.message(${objectNameLower});
+	public Message<${objectName}> view(@PathVariable String id)  {
+        ${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
+        ${objectName}VO ${objectNameLower}VO = BeanUtils.transfrom(${objectName}VO.class,${objectNameLower});
+		return SuccessMessage.message(${objectNameLower}VO);
 	}
 
 	@Override
