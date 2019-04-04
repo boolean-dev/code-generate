@@ -1,11 +1,9 @@
-package ${BASE_PACKAGE}.entity;
+package ${BASE_PACKAGE}.entity.vo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
-import java.math.BigDecimal;
-import java.util.Date;
 
 /**
  * @ClassName ${objectName}
@@ -14,23 +12,23 @@ import java.util.Date;
  * @date ${DATE}
  */
 @Data
-@Alias("${objectName}")
 @ApiModel("${memo}")
-public class ${objectName} {
+public class ${objectName}VO {
 
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * id
+     */
+    @ApiModelProperty(value = "id")
     private String id;
 	<#list params as param>
     /**
      * ${param.memo}
      */
-    @ApiModelProperty(value = "${param.memo}")
+    <#if !param.isNullable >@NotBlank</#if>
+    @ApiModelProperty(value = "${param.memo}"<#if !param.isNullable > required = true</#if>)
 	private ${param.type} ${param.name};
 	
 	</#list>
-
-    public void buildId() {
-        this.id = "CR" + globalId.nextId();
-    }
 }

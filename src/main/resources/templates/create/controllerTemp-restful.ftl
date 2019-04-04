@@ -13,6 +13,8 @@ import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
 import ${BASE_PACKAGE}.service.${objectName}Service;
 
+import java.util.List;
+
 /**
  * @ClassName ${objectName}
  * @Description ${memo}
@@ -26,7 +28,7 @@ public class ${objectName}Controller implements ${objectName}Feign {
 	private ${objectName}Service ${objectNameLower}Service;
 	
 	@Override
-	public Message save(@RequestBody @${objectName} ${objectNameLower}VO)  {
+	public Message save(@RequestBody ${objectName}VO ${objectNameLower}VO)  {
         ${objectName} ${objectNameLower} = BeanUtils.transfrom(${objectName}.class,${objectNameLower}VO);
         ${objectNameLower}.buildId();
         ${objectNameLower}.setDelete(Delete.NONE);
@@ -43,14 +45,14 @@ public class ${objectName}Controller implements ${objectName}Feign {
 	}
 	
 	@Override
-	public Page<${objectName}> list(Pageable pageable)  {
+	public Page<${objectName}VO> list(Pageable pageable)  {
         Page<${objectName}> page = ${objectNameLower}Service.findPage(pageable);
         List<${objectName}VO> ${objectNameLower}VOList = BeanUtils.batchTransform(${objectName}VO.class,page.getData());
         return new Page<>(${objectNameLower}VOList,page.getTotal(),pageable);
 	}
 	
 	@Override
-	public Message<${objectName}> view(@PathVariable String id)  {
+	public Message<${objectName}VO> view(@PathVariable String id)  {
         ${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
         ${objectName}VO ${objectNameLower}VO = BeanUtils.transfrom(${objectName}VO.class,${objectNameLower});
 		return SuccessMessage.message(${objectNameLower}VO);

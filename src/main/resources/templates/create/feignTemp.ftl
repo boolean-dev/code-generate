@@ -3,7 +3,10 @@ package ${BASE_PACKAGE}.feign;
 import ${BASE_PACKAGE}.Page;
 import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
+import ${BASE_PACKAGE}.entity.vo.${objectName}VO;
 import ${BASE_PACKAGE}.message.Message;
+
+import javax.validation.Valid;
 import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,7 +27,7 @@ public interface ${objectName}Feign {
 	 */
 	@ApiOperation(value = "添加${memo}", notes = "查询${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
-	Message save(@RequestBody @Valid ${objectName} ${objectNameLower});
+	Message save(@RequestBody @Valid ${objectName}VO ${objectNameLower}VO);
 
 	/**
 	* 更新${memo}
@@ -33,7 +36,7 @@ public interface ${objectName}Feign {
 	*/
 	@ApiOperation(value = "更新${memo}", notes = "更新${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
-	Message update(@RequestBody ${objectName} ${objectNameLower});
+	Message update(@RequestBody ${objectName}VO ${objectNameLower}VO);
 
 	/**
 	* ${memo}列表
@@ -42,7 +45,7 @@ public interface ${objectName}Feign {
 	*/
 	@ApiOperation(value = "${memo}列表", notes = "查看${memo}列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	Page<${objectName}> list(Pageable pageable);
+	Page<${objectName}VO> list(Pageable pageable);
 
 	/**
 	 * ${memo}详情
@@ -51,7 +54,7 @@ public interface ${objectName}Feign {
 	 */
 	@ApiOperation(value = "${memo}详情", notes = "根据id查看${memo}详情")
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
-	Message<${objectName}> view(@PathVariable String id);
+	Message<${objectName}VO> view(@PathVariable String id);
 
 	/**
 	 * 删除${memo}

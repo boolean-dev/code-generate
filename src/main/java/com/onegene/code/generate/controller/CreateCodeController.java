@@ -94,6 +94,7 @@ public class CreateCodeController {
 
 		/* 生成实体 */
 		printJavaFile("entityTemp.ftl", root, objectName + ".java", objectName + "/");
+		printJavaFile("entityTempVO.ftl", root, objectName + "VO.java", objectName + "/");
 
 		/* 生成controller */
 		printJavaFile("controllerTemp-web.ftl", root, objectName + "Controller.java", objectName + "/web/");

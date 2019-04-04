@@ -30,6 +30,7 @@
 		SELECT
 		<include refid="columns"/>
 		FROM ${tableName} t
+        WHERE `delete` = 0
 		ORDER BY id DESC
 		LIMIT ${'#'}{startIndex},${'#'}{pageSize}
 	</select>
@@ -39,6 +40,7 @@
 		SELECT
 		<include refid="columns"/>
 		FROM ${tableName} t
+        WHERE `delete` = 0
 	</select>
 	
 	<!-- 保存 -->
@@ -63,7 +65,7 @@
 		SELECT	
 		<include refid="columns"/>
 		FROM ${tableName} t
-		WHERE t.id = ${'#'}{id}
+		WHERE `delete` = 0 AND t.id = ${'#'}{id}
 	</select>
 	
 	<!-- 修改 -->
@@ -75,26 +77,29 @@
 			</#list>
 			<if test="delete != null">`delete` = ${'#'}{delete, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},</if>
 			modify_date = now(),
-			<if test="orders != null">orders = ${'#'}{orders}</if>
+			<if test="sort != null">`sort` = ${'#'}{sort}</if>
 		</trim>
 		WHERE 
 			id = ${'#'}{id}
 	</update>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll">
-		DELETE FROM ${tableName}
-		WHERE id IN
+	<update id="deleteAll">
+        UPDATE banner
+        SET `delete` = 0
+        WHERE
+        id IN
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
         	${'#'}{item}
 		</foreach>
-	</delete>
+	</update>
 	
 	<!-- 统计 -->
 	<select id="count" parameterType="map" resultType="java.lang.Long">
 		SELECT
 		COUNT(*)
 		FROM ${tableName} t
+        WHERE `delete` = 0
 	</select>
 	
 </mapper>
