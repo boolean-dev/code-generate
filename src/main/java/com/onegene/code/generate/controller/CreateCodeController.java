@@ -99,7 +99,8 @@ public class CreateCodeController {
 		/* 生成controller */
 		printJavaFile("controllerTemp-web.ftl", root, objectName + "Controller.java", objectName + "/web/");
 		printJavaFile("controllerTemp-restful.ftl", root, objectName + "Controller.java", objectName + "/");
-		printJavaFile("feignTemp.ftl", root, objectName + "Feign.java", objectName + "/");
+		printJavaFile("controllerTemp-feign.ftl", root, objectName + "Controller.java", objectName + "/feign/");
+		printJavaFile("feignTemp.ftl", root, objectName + "Feign.java", objectName + "/feign/");
 
 		/* 生成service */
 		printJavaFile("serviceTemp.ftl", root, objectName + "Service.java", objectName + "/");

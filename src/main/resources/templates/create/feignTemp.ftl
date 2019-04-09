@@ -21,28 +21,28 @@ import org.springframework.web.bind.annotation.*;
 public interface ${objectName}Feign {
 
 	/**
-	 * 添加管理员
-	 * @param ${objectNameLower} 管理员
-	 * @return	${objectNameLower}
-	 */
+	  * 添加${memo}
+	  * @param ${objectNameLower} ${memo}
+	  * @return	${objectNameLower}
+	  */
 	@ApiOperation(value = "添加${memo}", notes = "查询${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
 	Message save(@RequestBody @Valid ${objectName}VO ${objectNameLower}VO);
 
 	/**
-	* 更新${memo}
-	* @param ${objectNameLower} ${memo}
-	* @return	message
-	*/
+	 * 更新${memo}
+	 * @param ${objectNameLower} ${memo}
+	 * @return	message
+	 */
 	@ApiOperation(value = "更新${memo}", notes = "更新${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.PUT)
 	Message update(@RequestBody ${objectName}VO ${objectNameLower}VO);
 
 	/**
-	* ${memo}列表
-	* @param pageable  分页
-	* @return	page
-	*/
+	 * ${memo}列表
+	 * @param pageable  分页
+	 * @return	page
+	 */
 	@ApiOperation(value = "${memo}列表", notes = "查看${memo}列表")
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	Page<${objectName}VO> list(Pageable pageable);

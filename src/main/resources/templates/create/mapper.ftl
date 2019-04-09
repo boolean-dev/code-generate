@@ -86,7 +86,7 @@
 	<!-- 批量删除 -->
 	<update id="deleteAll">
         UPDATE banner
-        SET `delete` = 0
+        SET `delete` = 1
         WHERE
         id IN
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">

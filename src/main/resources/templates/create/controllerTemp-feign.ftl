@@ -1,17 +1,18 @@
-package ${BASE_PACKAGE}.controller.api;
+package ${BASE_PACKAGE}.controller;
 
+import ${BASE_PACKAGE}.feign.${objectName}Feign;
 import ${BASE_PACKAGE}.entity.vo.${objectName}VO;
 import ${BASE_PACKAGE}.enums.Delete;
 import ${BASE_PACKAGE}.utils.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
 import ${BASE_PACKAGE}.message.*;
 import ${BASE_PACKAGE}.Page;
 import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
 import ${BASE_PACKAGE}.service.${objectName}Service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.*;
 import java.util.List;
 
 /**
@@ -21,20 +22,12 @@ import java.util.List;
  * @date ${DATE}
  */
 @RestController
-@Api(value = "${memo}", tags = "${memo}")
-@RequestMapping("/api/${objectNameLower}")
-public class ${objectName}Controller {
+public class ${objectName}Controller implements ${objectName}Feign {
 
 	@Autowired
 	private ${objectName}Service ${objectNameLower}Service;
 	
-	/**
-	 * 添加${memo}
-	 * @param ${objectNameLower} ${memo}VO
-	 * @return	message
-	 */
-	@ApiOperation(value = "添加${memo}", notes = "查询${memo}数据")
-	@RequestMapping(value = "/", method = RequestMethod.POST)
+	@Override
 	public Message save(@RequestBody ${objectName}VO ${objectNameLower}VO)  {
         ${objectName} ${objectNameLower} = BeanUtils.transfrom(${objectName}.class,${objectNameLower}VO);
         ${objectNameLower}.buildId();
@@ -44,52 +37,28 @@ public class ${objectName}Controller {
 		return SuccessMessage.message("保存成功");
 	}
 	
-	/**
-	 * 更新${memo}
-	 * @param ${objectNameLower}VO ${memo}
-	 * @return	message
-	 */
-	@ApiOperation(value = "更新${memo}", notes = "更新${memo}数据")
-	@RequestMapping(value = "/", method = RequestMethod.PUT)
+	@Override
 	public Message update(@RequestBody ${objectName}VO ${objectNameLower}VO)  {
         ${objectName} ${objectNameLower} = BeanUtils.transfrom(${objectName}.class,${objectNameLower}VO);
 		${objectNameLower}Service.update(${objectNameLower});
 		return SuccessMessage.message("更新成功");
 	}
 	
-	/**
-	 * ${memo}列表
-	 * @param pageable  分页
-	 * @return	page
-	 */
-	@ApiOperation(value = "${memo}列表", notes = "查看${memo}列表")
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@Override
 	public Page<${objectName}VO> list(Pageable pageable)  {
         Page<${objectName}> page = ${objectNameLower}Service.findPage(pageable);
         List<${objectName}VO> ${objectNameLower}VOList = BeanUtils.batchTransform(${objectName}VO.class,page.getData());
         return new Page<>(${objectNameLower}VOList,page.getTotal(),pageable);
 	}
-
-	/**
-	 * ${memo}详情
-	 * @param id    ${memo}id
-	 * @return	message
-	 */
-	@ApiOperation(value = "${memo}详情", notes = "根据id查看${memo}详情")
-	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	
+	@Override
 	public Message<${objectName}VO> view(@PathVariable String id)  {
         ${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
         ${objectName}VO ${objectNameLower}VO = BeanUtils.transfrom(${objectName}VO.class,${objectNameLower});
 		return SuccessMessage.message(${objectNameLower}VO);
 	}
 
-	/**
-	 * 删除${memo}
-	 * @param id    ${memo}id
-	 * @return	message
-	 */
-	@ApiOperation(value = "删除${memo}", notes = "根据id删除${memo}")
-	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+	@Override
 	public Message delete(@PathVariable String id)  {
 		String[] ids = {id};
 		int i = ${objectNameLower}Service.delete(ids);
@@ -100,13 +69,9 @@ public class ${objectName}Controller {
 		}
 	}
 
-	/**
-	 * 删除${memo}ids
-	 * @param ids   ${memo}ids
-	 * @return	message
-	 */
-	@ApiOperation(value = "删除${memo}ids", notes = "根据ids删除${memo}")
-	@RequestMapping(value = "/", method = RequestMethod.DELETE)
+
+
+	@Override
 	public Message delete(@RequestBody String[] ids)  {
 		int i = ${objectNameLower}Service.delete(ids);
 		if(i > 0){
