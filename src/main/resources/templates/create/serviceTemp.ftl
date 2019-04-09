@@ -5,19 +5,39 @@ import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
 
 /**
- * @ClassName ${objectName}-${memo}
- * @Description: @TODO
- * @author: ${AUTHOR}
- * @date: ${DATE}
+ * @ClassName ${objectName}
+ * @Description ${memo}
+ * @author ${AUTHOR}
+ * @date ${DATE}
  */
 public interface ${objectName}Service extends BaseService<${objectName}> {
-	
-	${objectName} findById(String id) throws Exception;
 
-	Page<${objectName}> findPage(Pageable pageable) throws Exception;
-	
-	${objectName} save(${objectName} ${objectNameLower}) throws Exception;
-	
-	${objectName} update(${objectName} ${objectNameLower}) throws Exception;
+    /**
+	 * 通过id查找
+	 * @param id	id
+	 * @return	${objectNameLower}
+	 */
+	${objectName} findById(String id);
+
+    /**
+	 * 分页查找
+	 * @param pageable	id
+	 * @return	the page of ${objectNameLower}
+	 */
+	Page<${objectName}> findPage(Pageable pageable);
+
+    /**
+	 * 保存
+	 * @param ${objectNameLower}	${objectNameLower}
+	 * @return	${objectNameLower}
+	 */
+	${objectName} save(${objectName} ${objectNameLower});
+
+    /**
+	 * 更新
+     * @param ${objectNameLower}	${objectNameLower}
+	 * @return	${objectNameLower}
+	 */
+	${objectName} update(${objectName} ${objectNameLower});
 	
 }

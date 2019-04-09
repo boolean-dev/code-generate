@@ -8,19 +8,21 @@
 		<#list params as param>
 		<result column="${param.columnName}" property="${param.name}" jdbcType="${param.mybatisJdbcType}" />
 		</#list>
+		<result column="delete" property="delete" typeHandler="org.apache.ibatis.type.EnumOrdinalTypeHandler" />
 		<result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
 		<result column="modify_date" property="modifyDate" jdbcType="TIMESTAMP" />
-		<result column="orders" property="orders" jdbcType="BIGINT" />
+		<result column="sort" property="sort" jdbcType="BIGINT" />
 	</resultMap>
 
 	<sql id="columns">
-		id,
+		`id`,
 		<#list params as param>
-		${param.columnName},
+		`${param.columnName}`,
 		</#list>
-		create_date,
-		modify_date,
-		orders
+		`delete`,
+		`create_date`,
+		`modify_date`,
+		`sort`
 	</sql>
 	
 	<!-- 查找分页 -->
@@ -28,6 +30,7 @@
 		SELECT
 		<include refid="columns"/>
 		FROM ${tableName} t
+        WHERE `delete` = 0
 		ORDER BY id DESC
 		LIMIT ${'#'}{startIndex},${'#'}{pageSize}
 	</select>
@@ -37,6 +40,7 @@
 		SELECT
 		<include refid="columns"/>
 		FROM ${tableName} t
+        WHERE `delete` = 0
 	</select>
 	
 	<!-- 保存 -->
@@ -49,9 +53,10 @@
 		<#list params as param>
 		${'#'}{${param.name}},
 		</#list>
+		${'#'}{delete,typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},
 		now(),
 		now(),
-		${'#'}{orders}
+		${'#'}{sort}
 	  )
 	</insert>
  
@@ -60,7 +65,7 @@
 		SELECT	
 		<include refid="columns"/>
 		FROM ${tableName} t
-		WHERE t.id = ${'#'}{id}
+		WHERE `delete` = 0 AND t.id = ${'#'}{id}
 	</select>
 	
 	<!-- 修改 -->
@@ -70,28 +75,31 @@
 			<#list params as param>
 			<if test="${param.name} != null">${param.columnName} = ${'#'}{${param.name}},</if>
 			</#list>
-			<if test="createDate != null">create_date = ${'#'}{createDate},</if>
+			<if test="delete != null">`delete` = ${'#'}{delete, typeHandler=org.apache.ibatis.type.EnumOrdinalTypeHandler},</if>
 			modify_date = now(),
-			<if test="orders != null">orders = ${'#'}{orders}</if>
+			<if test="sort != null">`sort` = ${'#'}{sort}</if>
 		</trim>
 		WHERE 
 			id = ${'#'}{id}
 	</update>
 	
 	<!-- 批量删除 -->
-	<delete id="deleteAll">
-		DELETE FROM ${tableName}
-		WHERE id IN
+	<update id="deleteAll">
+        UPDATE banner
+        SET `delete` = 0
+        WHERE
+        id IN
 		<foreach item="item" index="index" collection="array" open="(" separator="," close=")">
         	${'#'}{item}
 		</foreach>
-	</delete>
+	</update>
 	
 	<!-- 统计 -->
 	<select id="count" parameterType="map" resultType="java.lang.Long">
 		SELECT
 		COUNT(*)
 		FROM ${tableName} t
+        WHERE `delete` = 0
 	</select>
 	
 </mapper>
