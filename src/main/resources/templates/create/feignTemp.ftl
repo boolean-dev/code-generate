@@ -22,8 +22,8 @@ public interface ${objectName}Feign {
 
 	/**
 	 * 添加管理员
-	 * @param ${objectNameLower} 管理员
-	 * @return	${objectNameLower}
+	 * @param ${objectNameLower}VO 管理员
+	 * @return	${objectNameLower}VO
 	 */
 	@ApiOperation(value = "添加${memo}", notes = "查询${memo}数据")
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -31,7 +31,7 @@ public interface ${objectName}Feign {
 
 	/**
 	* 更新${memo}
-	* @param ${objectNameLower} ${memo}
+	* @param ${objectNameLower}VO ${memo}
 	* @return	message
 	*/
 	@ApiOperation(value = "更新${memo}", notes = "更新${memo}数据")

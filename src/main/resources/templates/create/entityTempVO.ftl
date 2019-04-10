@@ -3,7 +3,8 @@ package ${BASE_PACKAGE}.entity.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.apache.ibatis.type.Alias;
+
+import javax.validation.constraints.NotBlank;
 
 /**
  * @ClassName ${objectName}
@@ -27,7 +28,7 @@ public class ${objectName}VO {
      * ${param.memo}
      */
     <#if !param.isNullable >@NotBlank</#if>
-    @ApiModelProperty(value = "${param.memo}"<#if !param.isNullable > required = true</#if>)
+    @ApiModelProperty(value = "${param.memo}"<#if !param.isNullable > , required = true</#if>)
 	private ${param.type} ${param.name};
 	
 	</#list>
