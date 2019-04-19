@@ -22,6 +22,7 @@ public class BaseUrlInterceptor extends HandlerInterceptorAdapter {
 			String basePath = scheme + "://" + serverName + ":" + port + path;
 			request.setAttribute("base", basePath);
 		}
+//		request.setAttribute("base","http://47.99.178.190/");
 	}
 
 }

@@ -11,7 +11,7 @@ public class CreateConfig {
     /**
      * 需要操作的数据库名
      */
-    public static final String DATA_BASE_NAME = "onegene_official";
+    public static final String DATA_BASE_NAME = "xizongyanshe_test";
 
     public static final String AUTHOR = "yanjiantao";
 

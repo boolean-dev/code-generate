@@ -19,7 +19,7 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
  * @author: ${AUTHOR}
  * @date: ${DATE}
  */
-@Controller
+@Controller("admin${objectNameLower}Controller")
 @RequestMapping("/admin/${objectNameLower}")
 public class ${objectName}Controller extends BaseController {
 
