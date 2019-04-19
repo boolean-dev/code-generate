@@ -17,12 +17,12 @@ public class CreateCodeServiceImpl extends BaseServiceImpl<CreateItem> implement
 	private CreateCodeDao createCodeDao;
 
 	@Override
-	public int delete(String[] ids) throws Exception {
+	public int delete(String[] ids) {
 		return 0;
 	}
 
 	@Override
-	public List<CreateItem> findColum(Map<String, Object> parameter) throws Exception {
+	public List<CreateItem> findColum(Map<String, Object> parameter) {
 		return createCodeDao.findList("CreateCodeMapper.findColumn", parameter);
 	}
 

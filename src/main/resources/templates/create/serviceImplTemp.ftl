@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import ${BASE_PACKAGE}.Page;
 import ${BASE_PACKAGE}.Pageable;
@@ -32,27 +33,27 @@ public class ${objectName}ServiceImpl extends BaseServiceImpl<${objectName}> imp
 	}
 
 	@Override
-	public ${objectName} save(${objectName} ${objectNameLower}) throws Exception {
+	public ${objectName} save(${objectName} ${objectNameLower}) {
 		return ${objectNameLower}Dao.save("${objectName}Mapper.save", ${objectNameLower});
 	}
 
 	@Override
-	public ${objectName} update(${objectName} ${objectNameLower}) throws Exception {
+	public ${objectName} update(${objectName} ${objectNameLower}) {
 		return ${objectNameLower}Dao.update("${objectName}Mapper.update", ${objectNameLower});
 	}
 
 	@Override
-	public int delete(String[] ids) throws Exception {
+	public int delete(String[] ids) {
 		return ${objectNameLower}Dao.delete("${objectName}Mapper.deleteAll", ids);
 	}
 
 	@Override
-	public ${objectName} findById(String id) throws Exception {
+	public ${objectName} findById(String id) {
 		return ${objectNameLower}Dao.find(id);
 	}
 
 	@Override
-	public Page<${objectName}> findPage(Pageable pageable) throws Exception {
+	public Page<${objectName}> findPage(Pageable pageable) {
 		
 		int pageNumber = pageable.getPageNumber();
 		int pageSize = pageable.getPageSize();

@@ -15,59 +15,59 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	private SqlSessionTemplate sqlSessionTemplate;
 
 	@Override
-	public T save(String str, T entity) throws Exception {
+	public T save(String str, T entity) {
 		sqlSessionTemplate.insert(str, entity);
 		return entity;
 	}
 
-	public List<T> save(String str, List<T> entitys) throws Exception {
+	public List<T> save(String str, List<T> entitys) {
 		sqlSessionTemplate.insert(str, entitys);
 		return entitys;
 	}
 	
 	@Override
-	public int save(String str, Map<String, Object> parameter) throws Exception {
+	public int save(String str, Map<String, Object> parameter) {
 		return sqlSessionTemplate.insert(str, parameter);		
 	}
 
 	@Override
-	public int update(String mapper, Map<String, Object> parameter) throws Exception {
+	public int update(String mapper, Map<String, Object> parameter) {
 		return sqlSessionTemplate.update(mapper, parameter);
 	}
 	
 	@Override
-	public T update(String str, T entity) throws Exception {
+	public T update(String str, T entity) {
 		sqlSessionTemplate.update(str, entity);
 		return entity;
 	}
 	
 	@Override
-	public int delete(String mapper, String id) throws Exception {
+	public int delete(String mapper, String id) {
 		return sqlSessionTemplate.delete(mapper, id);
 	}
 
 	@Override
-	public int delete(String str, String[] ids) throws Exception {
+	public int delete(String str, String[] ids) {
 		return sqlSessionTemplate.delete(str, ids);
 	}
 	
 	@Override
-	public int delete(String mapper, Map<String, Object> parameter) throws Exception {
+	public int delete(String mapper, Map<String, Object> parameter) {
 		return sqlSessionTemplate.delete(mapper, parameter);
 	}
 	
 	@Override
-	public T find(String str, Map<String,Object> parameter) throws Exception {
+	public T find(String str, Map<String,Object> parameter) {
 		return sqlSessionTemplate.selectOne(str, parameter);
     }
 	
 	@Override
-	public Object findObj(String str, Map<String,Object> parameter) throws Exception {
+	public Object findObj(String str, Map<String,Object> parameter) {
 		return sqlSessionTemplate.selectOne(str, parameter);
     }
 	
 	@Override
-	public Long count(String str, Map<String,Object> parameter) throws Exception {
+	public Long count(String str, Map<String,Object> parameter) {
 		Long count = sqlSessionTemplate.selectOne(str, parameter);
 		if(count == null){
 			return 0L;
@@ -77,7 +77,7 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
     }
 	
 	@Override
-	public Double sum(String str, Map<String, Object> parameter) throws Exception{
+	public Double sum(String str, Map<String, Object> parameter){
 		Double sum = sqlSessionTemplate.selectOne(str, parameter);
 		if(sum == null){
 			return 0.0;
@@ -87,22 +87,22 @@ public abstract class BaseDaoImpl<T> implements BaseDao<T> {
 	}
     
     @Override
-	public List<T> findList(String str, Map<String,Object> parameter) throws Exception {
+	public List<T> findList(String str, Map<String,Object> parameter) {
         return sqlSessionTemplate.selectList(str, parameter);
     }
     
     @Override
-	public List<Object> findObjList(String str, Map<String,Object> parameter) throws Exception {
+	public List<Object> findObjList(String str, Map<String,Object> parameter) {
         return sqlSessionTemplate.selectList(str, parameter);
     }
 
     @Override
-	public Map<String,Map<String,String>> findMap(String mapper, Map<String,Object> parameter, String mapKey) throws Exception {
+	public Map<String,Map<String,String>> findMap(String mapper, Map<String,Object> parameter, String mapKey) {
         return sqlSessionTemplate.selectMap(mapper, parameter, mapKey);
     }
 
 	@Override
-	public List<String> findRe(String str, List<String> list) throws Exception {
+	public List<String> findRe(String str, List<String> list) {
 		 return sqlSessionTemplate.selectList(str, list);
 	}
 

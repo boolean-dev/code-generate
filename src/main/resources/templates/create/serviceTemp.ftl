@@ -12,12 +12,12 @@ import ${BASE_PACKAGE}.entity.${objectName};
  */
 public interface ${objectName}Service extends BaseService<${objectName}> {
 	
-	${objectName} findById(String id) throws Exception;
+	${objectName} findById(String id);
 
-	Page<${objectName}> findPage(Pageable pageable) throws Exception;
+	Page<${objectName}> findPage(Pageable pageable);
 	
-	${objectName} save(${objectName} ${objectNameLower}) throws Exception;
+	${objectName} save(${objectName} ${objectNameLower});
 	
-	${objectName} update(${objectName} ${objectNameLower}) throws Exception;
+	${objectName} update(${objectName} ${objectNameLower});
 	
 }

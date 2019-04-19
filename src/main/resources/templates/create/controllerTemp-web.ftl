@@ -7,8 +7,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import ${BASE_PACKAGE}.Message;
+import ${BASE_PACKAGE}.message.Message;
 import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
 import ${BASE_PACKAGE}.service.${objectName}Service;
@@ -27,38 +28,38 @@ public class ${objectName}Controller extends BaseController {
 	private ${objectName}Service ${objectNameLower}Service;
 	
 	@RequestMapping(value = "/add", method = RequestMethod.GET)
-	public String add(ModelMap model) throws Exception {
+	public String add(ModelMap model) {
 		return "/admin/${objectNameLower}/add";
 	}
 	
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public Object save(ModelMap model,${objectName} ${objectNameLower}) throws Exception {
+	public Object save(ModelMap model,${objectName} ${objectNameLower}) {
 		${objectNameLower}.buildId();
 		${objectNameLower}Service.save(${objectNameLower});
 		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public String edit(ModelMap model,String id) throws Exception {
+	public String edit(ModelMap model,String id) {
 		${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
 		model.addAttribute("${objectNameLower}", ${objectNameLower});
 		return "/admin/${objectNameLower}/edit";
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String update(ModelMap model,${objectName} ${objectNameLower}) throws Exception {
+	public String update(ModelMap model,${objectName} ${objectNameLower}) {
 		${objectNameLower}Service.update(${objectNameLower});
 		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public String list(ModelMap model,Pageable pageable) throws Exception {
+	public String list(ModelMap model,Pageable pageable) {
 		model.addAttribute("page", ${objectNameLower}Service.findPage(pageable));
 		return "/admin/${objectNameLower}/list";
 	}
 	
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public String view(ModelMap model,String id) throws Exception {
+	public String view(ModelMap model,String id) {
 		${objectName} ${objectNameLower} = ${objectNameLower}Service.findById(id);
 		model.addAttribute("${objectNameLower}", ${objectNameLower});
 		return "/admin/${objectNameLower}/view";
@@ -66,12 +67,12 @@ public class ${objectName}Controller extends BaseController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public Message delete(String[] ids) throws Exception {
+	public Message delete(String[] ids) {
 		int i = ${objectNameLower}Service.delete(ids);
 		if(i > 0){
-			return SUCCESS_MESSAGE;
+			return SuccessMessage.message();
 		}else{
-			return SUCCESS_MESSAGE;
+			return SuccessMessage.message();
 		}
 	}
 		

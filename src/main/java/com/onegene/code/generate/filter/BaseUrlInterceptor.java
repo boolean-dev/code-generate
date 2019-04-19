@@ -10,7 +10,7 @@ public class BaseUrlInterceptor extends HandlerInterceptorAdapter {
 
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                           ModelAndView modelAndView) throws Exception {
+                           ModelAndView modelAndView) {
 		String path = request.getContextPath();
 		String scheme = request.getScheme();
 		String serverName = request.getServerName();
