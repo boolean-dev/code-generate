@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import ${BASE_PACKAGE}.Message;
 import ${BASE_PACKAGE}.Pageable;
 import ${BASE_PACKAGE}.entity.${objectName};
 import ${BASE_PACKAGE}.service.${objectName}Service;
@@ -19,7 +18,7 @@ import ${BASE_PACKAGE}.service.${objectName}Service;
  * @author ${AUTHOR}
  * @date ${DATE}
  */
-@Controller
+@Controller("admin${objectNameLower}Controller")
 @RequestMapping("/admin/${objectNameLower}")
 public class ${objectName}Controller extends BaseController {
 

@@ -28,7 +28,7 @@ public class ${objectName}VO {
      * ${param.memo}
      */
     <#if !param.isNullable >@NotBlank</#if>
-    @ApiModelProperty(value = "${param.memo}"<#if !param.isNullable > required = true</#if>)
+    @ApiModelProperty(value = "${param.memo}"<#if !param.isNullable > ,required = true</#if>)
 	private ${param.type} ${param.name};
 	
 	</#list>
