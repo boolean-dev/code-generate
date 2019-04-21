@@ -25,52 +25,52 @@ public abstract class BaseServiceImpl<T> implements BaseService<T> {
 
 	@Override
 	@Transactional
-	public T save(String mapper, T entity) throws Exception {
+	public T save(String mapper, T entity) {
 		return baseDao.save(mapper, entity);
 	}
 
 	@Override
 	@Transactional
-	public T update(String mapper, T entity) throws Exception {
+	public T update(String mapper, T entity) {
 		return baseDao.update(mapper, entity);
 	}
 	
 	@Override
 	@Transactional
-	public int delete(String mapper, String id) throws Exception {
+	public int delete(String mapper, String id) {
 		return baseDao.delete(mapper, id);
 	}
 
 	@Override
 	@Transactional
-	public T find(String mapper, Map<String, Object> parameters) throws Exception {		
+	public T find(String mapper, Map<String, Object> parameters) {
 		return baseDao.find(mapper, parameters);
 	}
 
 	@Override
 	@Transactional
-	public int update(String mapper, Map<String, Object> parameter) throws Exception {
+	public int update(String mapper, Map<String, Object> parameter) {
 		return baseDao.update(mapper, parameter);
 	}
 
 	@Transactional
-	public int delete(String mapper, String[] ids) throws Exception {
+	public int delete(String mapper, String[] ids) {
 		return baseDao.delete(mapper, ids);
 	}
 
 	@Override
 	@Transactional
-	public int delete(String mapper, Map<String, Object> parameter) throws Exception {
+	public int delete(String mapper, Map<String, Object> parameter) {
 		return baseDao.delete(mapper, parameter);
 	}
 
 	@Override
-	public List<T> findList(String mapper, Map<String, Object> parameter) throws Exception {
+	public List<T> findList(String mapper, Map<String, Object> parameter) {
 		return baseDao.findList(mapper, parameter);
 	}
 	
 	@Override
-	public Long count(String mapper, Map<String, Object> parameter) throws Exception {
+	public Long count(String mapper, Map<String, Object> parameter) {
 		return baseDao.count(mapper, parameter);
 	}
 

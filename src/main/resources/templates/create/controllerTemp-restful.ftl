@@ -27,7 +27,7 @@ public class ${objectName}Controller {
 
 	@Autowired
 	private ${objectName}Service ${objectNameLower}Service;
-	
+
 	/**
 	 * 添加${memo}
 	 * @param ${objectNameLower} ${memo}VO
@@ -43,7 +43,7 @@ public class ${objectName}Controller {
 		${objectNameLower}Service.save(${objectNameLower});
 		return SuccessMessage.message("保存成功");
 	}
-	
+
 	/**
 	 * 更新${memo}
 	 * @param ${objectNameLower}VO ${memo}
@@ -56,7 +56,7 @@ public class ${objectName}Controller {
 		${objectNameLower}Service.update(${objectNameLower});
 		return SuccessMessage.message("更新成功");
 	}
-	
+
 	/**
 	 * ${memo}列表
 	 * @param pageable  分页

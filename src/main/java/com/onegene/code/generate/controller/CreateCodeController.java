@@ -34,12 +34,12 @@ public class CreateCodeController {
 	private CreateCodeService createCodeService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String create() throws Exception {
+	public String create() {
 		return "/createCode/add";
 	}
 
 	@RequestMapping(value = "/column", method = RequestMethod.POST)
-	public Object findColumn(ModelMap model, String findTableName) throws Exception {
+	public Object findColumn(ModelMap model, String findTableName) {
 		Map<String,Object> parameter = new HashMap<>();
 		parameter.put("tableName", findTableName);
 		parameter.put("databaseName", CreateConfig.DATA_BASE_NAME);
@@ -61,7 +61,7 @@ public class CreateCodeController {
 
 	@ResponseBody
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public static Object save(String entityName, String tableName, String memo, String strCreateItems) throws Exception {
+	public static Object save(String entityName, String tableName, String memo, String strCreateItems) {
 		
 		Gson gson = new Gson();
 		List<CreateItem> createItems = gson.fromJson(strCreateItems, new TypeToken<List<CreateItem>>(){}.getType());
@@ -128,7 +128,7 @@ public class CreateCodeController {
 	}
 
 	public static void printJavaFile(String ftlName, Map<String, Object> root, String outFile, String filePath)
-			throws Exception {
+			 {
 		try {
 			File file = new File(PROJECT_PATH + filePath + outFile);
 			// 判断有没有父路径，就是判断文件整个路径是否存在
@@ -154,7 +154,7 @@ public class CreateCodeController {
 	 * 
 	 * @param ftlName
 	 */
-	private static Template getTemplate(String ftlName) throws Exception {
+	private static Template getTemplate(String ftlName) {
 		try {
 			File file = ResourceUtils.getFile("classpath:application.yml");
 			// 通过Freemaker的Configuration读取相应的ftl

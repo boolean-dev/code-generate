@@ -1,6 +1,6 @@
-server:
-  port: 8081
 spring:
+#  main:
+#    allow-bean-definition-overriding: true
   application:
     name: springboot
   datasource:
@@ -35,3 +35,5 @@ spring:
 mybatis:
   config-location: classpath:/mybatis-config.xml
   mapper-locations: classpath:mybatis/*.xml
+server:
+  port: 80

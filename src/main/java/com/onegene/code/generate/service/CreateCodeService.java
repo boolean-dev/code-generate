@@ -7,6 +7,6 @@ import java.util.Map;
 
 public interface CreateCodeService extends BaseService<CreateItem> {
 
-	List<CreateItem> findColum(Map<String, Object> parameter) throws Exception;
+	List<CreateItem> findColum(Map<String, Object> parameter);
 
 }
