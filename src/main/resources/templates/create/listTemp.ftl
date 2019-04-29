@@ -74,11 +74,11 @@
 		                        </button>
 		                        <ul id="searchPropertyOption" class="dropdown-menu">
 									<li>
-										<a href="javascript:;" val="name"  [#if page.searchProperty == "name"]selected[/#if]>名称</a>
+										<a href="javascript:;" val="name"  [#if page.searchProperty ??]selected[/#if]>名称</a>
 									</li>
 								</ul>
 							</div>
-							<input type="text" id="searchValue" name="searchValue" value="${'$'}{page.searchValue}" placeholder="请输入关键词" class="form-control">
+							<input type="text" id="searchValue" name="searchValue" value="${'$'}{page.searchValue!}" placeholder="请输入关键词" class="form-control">
 							<span class="input-group-btn">
 	                        	<button type="submit" class="btn btn-primary">搜索</button>
 	                        </span>
